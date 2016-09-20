@@ -71,17 +71,17 @@ namespace PdbPrueba
 				case '2':
 					Console.Clear ();
 					Console.Write ("Editar");
-
-				// Continuar lógica y extraer métodos //
-					break;
-
-				case '3':
-					Console.Write ("Eliminar");
-					Console.WriteLine("Introducir un ID");
+					Console.WriteLine("Seleccione ID a modificar");
 					id = Console.ReadLine();
+					dbCommand.CommandText=("update categoria set nombre=(@nuevo) where id='"+id+"'");
 
-					dbCommand.CommandText =("delete from categoria where id='" +id+ "'");
-					dbCommand.ExecuteNonQuery();
+					dbDataParameter.ParameterName = "nuevo";
+					Console.Write("Porfavor Introduzca su nombre" + "\n");
+					valor = Console.ReadLine();
+
+					dbDataParameter.Value = valor;
+					dbCommand.Parameters.Add (dbDataParameter);
+					dbCommand.ExecuteNonQuery ();
 					dbCommand.Dispose(); //Cierra la variable
 
 
@@ -90,16 +90,21 @@ namespace PdbPrueba
 				// Continuar lógica y extraer métodos //
 					break;
 
+				case '3':
+					Console.Write ("Eliminar");
+					Console.WriteLine("Introducir un ID");
+					id = Console.ReadLine();
+					dbCommand.CommandText =("delete from categoria where id='" +id+ "'");
+					dbCommand.ExecuteNonQuery();
+					dbCommand.Dispose(); //Cierra la variable
+					break;
+
 
 				case '4':
 					Console.Clear ();
-
 					Console.Write ( "----------------------------"+ "\n"+"Seleccionó Listar" +"\n" + "----------------------------"+ "\n");
 					dbCommand.CommandText = "SELECT * FROM categoria";
-					IDataReader dataReader = dbCommand.ExecuteReader ();	
-
-
-				
+					IDataReader dataReader = dbCommand.ExecuteReader ();				
 					while (dataReader.Read()) {
 						Console.WriteLine ("Id" + dataReader ["id"] + "\t Nombre: " + dataReader ["nombre"] +"\n");
 					}
