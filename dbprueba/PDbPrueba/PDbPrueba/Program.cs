@@ -12,7 +12,7 @@ namespace PdbPrueba
 
 
 
-			String valor;
+			String valor,id;
 
 			Console.WriteLine ("Probando Acceso a dbprueba");
 
@@ -63,6 +63,7 @@ namespace PdbPrueba
 					dbDataParameter.Value = valor;
 					dbCommand.Parameters.Add (dbDataParameter);
 					dbCommand.ExecuteNonQuery ();
+					dbCommand.Dispose(); //Cierra la variable
 
 				// Continuar lógica y extraer métodos //
 					break;
@@ -76,6 +77,16 @@ namespace PdbPrueba
 
 				case '3':
 					Console.Write ("Eliminar");
+					Console.WriteLine("Introducir un ID");
+					id = Console.ReadLine();
+
+					dbCommand.CommandText =("delete from categoria where id='" +id+ "'");
+					dbCommand.ExecuteNonQuery();
+					dbCommand.Dispose(); //Cierra la variable
+
+
+
+
 				// Continuar lógica y extraer métodos //
 					break;
 
@@ -93,7 +104,7 @@ namespace PdbPrueba
 						Console.WriteLine ("Id" + dataReader ["id"] + "\t Nombre: " + dataReader ["nombre"] +"\n");
 					}
 					dataReader.Close ();
-
+					dbCommand.Dispose(); //Cierra la variable
 					break;
 				}
 
