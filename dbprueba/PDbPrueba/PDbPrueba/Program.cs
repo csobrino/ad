@@ -12,7 +12,7 @@ namespace PdbPrueba
 
 
 
-
+			String valor;
 
 			Console.WriteLine ("Probando Acceso a dbprueba");
 
@@ -25,15 +25,7 @@ namespace PdbPrueba
 			dbConnection.Open ();
 			IDbCommand dbCommand = dbConnection.CreateCommand ();
 			IDbDataParameter dbDataParameter = dbCommand.CreateParameter ();
-		
-	
-
-
-
-
-
-
-			//mySqlConnection.CreateCommand().
+		//mySqlConnection.CreateCommand().
 
 
 			do {
@@ -56,12 +48,19 @@ namespace PdbPrueba
 
 
 				case '1':
-					Console.Write ("Seleccionó Nuevo");
+					Console.Clear();
+					Console.Write ("Seleccionó Nuevo"+"\n");
 
 
 					dbCommand.CommandText = "insert into categoria (nombre) values (@nombre)";
 					dbDataParameter.ParameterName = "nombre";
-					dbDataParameter.Value = "Categoria 4";
+
+
+					Console.Write("Porfavor Introduzca su nombre" + "\n");
+					valor = Console.ReadLine();
+
+
+					dbDataParameter.Value = valor;
 					dbCommand.Parameters.Add (dbDataParameter);
 					dbCommand.ExecuteNonQuery ();
 
