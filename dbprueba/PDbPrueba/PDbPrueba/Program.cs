@@ -30,14 +30,14 @@ namespace PdbPrueba
 
 			do {
 
-				Console.Write ("0) Salir" + "\n");
-				Console.Write ("1) Nuevo" + "\n");
-				Console.Write ("2) Editar" +"\n");
-				Console.Write ("3) Eliminar" +"\n");
-				Console.Write ("4º) Listar Todos" +"\n");
+				Console.Write ("0) Salir" + "\n"+ 
+				               "1) Nuevo" + "\n"+
+				               "2) Editar" +"\n"+
+				               "3) Eliminar" +"\n"+
+				               "4º) Listar Todos" +"\n");
 
 				switch (Console.Read ()) {
-				case '0':
+				case '0': // CERRAR CONEXION.
 					Console.Clear ();
 					Console.Write ("\n" + "La conexion ha finalizado");
 			
@@ -47,7 +47,7 @@ namespace PdbPrueba
 
 
 
-				case '1':
+				case '1': //NUEVA ENTRADA PARA LA BASE DE DATOS (ID AUTOINCREMENT).
 					Console.Clear();
 					Console.Write ("Seleccionó Nuevo"+"\n");
 
@@ -63,12 +63,12 @@ namespace PdbPrueba
 					dbDataParameter.Value = valor;
 					dbCommand.Parameters.Add (dbDataParameter);
 					dbCommand.ExecuteNonQuery ();
-					dbCommand.Dispose(); //Cierra la variable
+					dbCommand.Dispose(); //Cierra la variable (recomendado usar siempre)
 
-				// Continuar lógica y extraer métodos //
+
 					break;
 
-				case '2':
+				case '2': // EDITAR CAMPO DE TABLA MEDIANTE UPDATE (SQL).
 					Console.Clear ();
 					Console.Write ("Editar");
 					Console.WriteLine("Seleccione ID a modificar");
@@ -90,7 +90,7 @@ namespace PdbPrueba
 				// Continuar lógica y extraer métodos //
 					break;
 
-				case '3':
+				case '3': //ELIMINAR MEDIANTE INTRODUCCION DE ID A ELEGIR.
 					Console.Write ("Eliminar");
 					Console.WriteLine("Introducir un ID");
 					id = Console.ReadLine();
@@ -100,7 +100,7 @@ namespace PdbPrueba
 					break;
 
 
-				case '4':
+				case '4': //LISTAR TODOS LOS CAMPOS DE LA TABLA.
 					Console.Clear ();
 					Console.Write ( "----------------------------"+ "\n"+"Seleccionó Listar" +"\n" + "----------------------------"+ "\n");
 					dbCommand.CommandText = "SELECT * FROM categoria";
