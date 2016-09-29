@@ -73,7 +73,8 @@ namespace PdbPrueba
 					Console.Write ("Editar");
 					Console.WriteLine("Seleccione ID a modificar");
 					id = Console.ReadLine();
-					dbCommand.CommandText=("update categoria set nombre=(@nuevo) where id='"+id+"'");
+					dbCommand.CommandText=("update categoria " +
+						"set nombre=(@nuevo) where id='"+id+"'");
 
 					dbDataParameter.ParameterName = "nuevo";
 					Console.Write("Porfavor Introduzca su nombre" + "\n");
@@ -94,9 +95,12 @@ namespace PdbPrueba
 					Console.Write ("Eliminar");
 					Console.WriteLine("Introducir un ID");
 					id = Console.ReadLine();
-					dbCommand.CommandText =("delete from categoria where id='" +id+ "'");
+					dbCommand.CommandText =("delete from categoria " +
+						"where id='" +id+ "'");
 					dbCommand.ExecuteNonQuery();
 					dbCommand.Dispose(); //Cierra la variable
+
+
 					break;
 
 
@@ -115,10 +119,6 @@ namespace PdbPrueba
 
 			} while(dbConnection != null);
 		}
-
-			//operaciones...
-
-
-		}
 	}
+}
 
