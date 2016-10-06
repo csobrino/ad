@@ -6,10 +6,16 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <widget-library name="../../../Org.InstitutoSerpis.Ad/Org.InstitutoSerpis.Ad/bin/Debug/Org.InstitutoSerpis.Ad.dll" />
     <widget-library name="../bin/Debug/PTreeView.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="400 300">
-    <action-group name="Default" />
+    <action-group name="Default">
+      <action id="Action">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+      </action>
+    </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -22,7 +28,9 @@
           <widget class="Gtk.Toolbar" id="toolbar1">
             <property name="MemberName" />
             <property name="ShowArrow">False</property>
-            <node name="__gtksharp_139_Stetic_Editor_ActionToolbar" type="Toolbar" />
+            <node name="__gtksharp_139_Stetic_Editor_ActionToolbar" type="Toolbar">
+              <node type="Toolitem" action="Action" />
+            </node>
           </widget>
           <packing>
             <property name="Position">0</property>
@@ -36,7 +44,7 @@
             <property name="MemberName" />
             <property name="ShadowType">In</property>
             <child>
-              <widget class="Gtk.TreeView" id="treeview1">
+              <widget class="Gtk.TreeView" id="treeView">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="ShowScrollbars">True</property>

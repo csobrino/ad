@@ -1,5 +1,6 @@
 using System;
 using Gtk;
+using MySql.Data.MySqlClient;
 
 namespace PTreeView
 {
@@ -11,6 +12,9 @@ namespace PTreeView
 			MainWindow win = new MainWindow ();
 			win.Show ();
 			Application.Run ();
+		
+
 		}
+
 	}
 }
