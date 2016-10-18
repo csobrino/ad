@@ -32,11 +32,24 @@ public partial class MainWindow: Gtk.Window
 			Console.WriteLine ("treeView.Selection.Changed selected ={0}", selected);
 		};
 
+		newAction.Activated += delegate {
+			new ArticuloView();
+
+	};
+
 		refreshAction.Activated += delegate {
 			fill();
 		
 		};
 	}
+
+
+
+
+
+
+
+
 
 	protected void fill(){
 
