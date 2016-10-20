@@ -32,6 +32,7 @@ namespace PArticulo
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Container child PArticulo.ArticuloView.Gtk.Container+ContainerChild
 			this.vbox3 = new global::Gtk.VBox ();
+			this.vbox3.Name = "vbox3";
 			this.vbox3.Spacing = 6;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar1'><toolitem name='saveAction' action='saveAction'/></toolbar></ui>");
@@ -49,7 +50,7 @@ namespace PArticulo
 			this.table1.RowSpacing = ((uint)(6));
 			this.table1.ColumnSpacing = ((uint)(6));
 			// Container child table1.Gtk.Table+TableChild
-			this.comboBoxCategoria = global::Gtk.ComboBox.NewText ();
+			this.comboBoxCategoria = new global::Gtk.ComboBox ();
 			this.comboBoxCategoria.Name = "comboBoxCategoria";
 			this.table1.Add (this.comboBoxCategoria);
 			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table1 [this.comboBoxCategoria]));

@@ -1,6 +1,10 @@
 using Gtk;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using Org.InstitutoSerpis.Ad;
+
 
 namespace PArticulo
 {
@@ -9,24 +13,21 @@ namespace PArticulo
 		public ArticuloView () : base(Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
-			spinButtonPrecio.Value = 0;
+			spinButtonPrecio.Value = 0; //stetic bug
+
 			saveAction.Sensitive = false;
 
 			List<Categoria> list = new  List<Categoria> ();
 			list.Add( new Categoria(1L, "categoria 1"));
 			list.Add( new Categoria(2L, "categoria 2"));
-			ListStore listStore = new ListStore (typeof(object));
-			foreach (object item in list)
-				listStore.AppendValues (item);
+			list.Add( new Categoria(3L, "categoria 3"));
+
+			ComboboxHelper.Fill (comboBoxCategoria, list, "Nombre");      
 
 
-
-			comboBoxCategoria.Model = ListStore;
-
-			
 			entryNombre.Changed += delegate {
-				string value = entryNombre.Text.Trim();
-				saveAction.Sensitive = !value.Equals("");
+				string content = entryNombre.Text.Trim();
+				saveAction.Sensitive = content != string.Empty;
 
 			};
 			saveAction.Activated += delegate {
@@ -35,6 +36,7 @@ namespace PArticulo
 		};
 
 		}
+	
 	}
 	public class Categoria {
 		public Categoria (long id, string nombre){
