@@ -2,11 +2,11 @@ using System;
 
 namespace Org.InstitutoSerpis.Ad
 {
-	internal class Null
+	public class Null
 	{
-		public Null ()
-		{
-		}
+		public static readonly Null value = new Null ();
+
+
 	}
 }
 

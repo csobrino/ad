@@ -8,6 +8,7 @@ namespace Org.InstitutoSerpis.Ad
 			public static void AddParameter(IDbCommand dbCommand,string name, object value){
 			IDbDataParameter dbDataParameter = dbCommand.CreateParameter();
 			dbDataParameter.ParameterName = "nombre";
+			dbDataParameter.ParameterName = "precio";
 			dbDataParameter.Value = value;
 			dbCommand.Parameters.Add(dbDataParameter);
 		}
