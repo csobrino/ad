@@ -26,10 +26,8 @@ namespace PArticulo
 				string insertSql = "insert into articulo (nombre)values (@nombre)";
 				IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
 				dbCommand.CommandText = insertSql;
-				IDbDataParameter dbDataParameter = dbCommand.CreateParameter();
-				dbDataParameter.ParameterName = "nombre";
-				dbDataParameter.Value = nombre;
-				dbCommand.Parameters.Add(dbDataParameter);
+				DbCommandHelper.AddParameter(dbCommand, "nombre", nombre);
+
 				dbCommand.ExecuteNonQuery();
 
 			};
