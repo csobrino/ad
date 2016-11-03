@@ -9,7 +9,6 @@ namespace Org.InstitutoSerpis.Ad
 //			IDbDataParameter dbDataParameter = dbCommand.CreateParameter();
 //			dbDataParameter.ParameterName = "nombre";
 //			dbDataParameter.ParameterName = "precio";
-//			dbDataParameter.ParameterName = "categoria";
 //			dbDataParameter.Value = value;
 //			dbCommand.Parameters.Add(dbDataParameter);
 //		}

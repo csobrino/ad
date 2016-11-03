@@ -1,6 +1,7 @@
 using Gtk;
 using System;
 using System.Data;
+using System.Collections;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 
@@ -50,28 +51,9 @@ public partial class MainWindow: Gtk.Window
 
 
 	protected void fill(){
-
-		List<Articulo>list =  new List<Articulo>();
-		//TODO Rellenar desde la tabla articulo
-		string selectSql = "Select * from articulo";
-		IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand ();
-		dbCommand.CommandText = selectSql;
-		IDataReader dataReader = dbCommand.ExecuteReader ();
-
-
-		while (dataReader.Read()) {
-
-			long id = (long)dataReader ["id"]; //Al poner (long) hacemos una conversion FORZADA
-			string nombre = (string)dataReader ["nombre"];
-			decimal? precio = dataReader ["precio"] is DBNull ? null : (decimal?)dataReader["precio"];
-			long? categoria = dataReader ["categoria"] is DBNull ? null : (long?)dataReader ["categoria"];
-			Articulo articulo = new Articulo(id, nombre, precio, categoria);
-			list.Add (articulo);
-		}
-		dataReader.Close ();
-
 		editAction.Sensitive = false;
 		deleteAction.Sensitive = false;
+		IList list = ArticuloDao.getList();
 		TreeViewHelper.Fill (treeView, list);
 	
 	}
