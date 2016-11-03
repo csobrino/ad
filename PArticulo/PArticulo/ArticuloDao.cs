@@ -12,14 +12,13 @@ namespace PArticulo
 {
 	public class ArticuloDao
 	{
-		private static string selectSql = "select * from articulo";
+		private static string SELECT_SQL = "select * from articulo";
 		public static IList getList ()
 		{
 
 			List<Articulo>list =  new List<Articulo>();
-			string selectSql = "Select * from articulo";
 			IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand ();
-			dbCommand.CommandText = selectSql;
+			dbCommand.CommandText = SELECT_SQL;
 			IDataReader dataReader = dbCommand.ExecuteReader ();
 
 
@@ -35,12 +34,13 @@ namespace PArticulo
 			dataReader.Close ();
 			return list;
 		}
-		public static void Save(Articulo articulo){
-			string insertSql = "insert into articulo(nombre, precio, categoria)" +
-				"values (@nombre, @precio, @categoria)";
 
+		private static string INSERT_SQL = "insert into articulo(nombre, precio, categoria)" +
+			"values (@nombre, @precio, @categoria)";
+		public static void Save(Articulo articulo){
+	
 			IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
-			dbCommand.CommandText = insertSql;
+			dbCommand.CommandText = INSERT_SQL;
 			DbCommandHelper.AddParameter(dbCommand, "nombre", articulo.Nombre);
 			DbCommandHelper.AddParameter(dbCommand, "precio", articulo.Precio);
 			DbCommandHelper.AddParameter(dbCommand, "categoria", articulo.Categoria);
