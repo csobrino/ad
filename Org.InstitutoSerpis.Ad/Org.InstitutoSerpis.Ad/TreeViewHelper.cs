@@ -65,6 +65,14 @@ namespace Org.InstitutoSerpis.Ad
 			appendColumns (treeView, list);
 			appendValues (treeView, list);
 		}
+
+		public static object GetId(TreeView treeView){
+			TreeIter treeIter;
+			treeView.Selection.GetSelected (out treeIter);
+			object item = treeView.Model.GetValue (treeIter, 0);
+			return item == Null.value ? null : 
+				item.GetType ().GetProperty ("Id").GetValue (item, null);
+	}
 	}
 
 }

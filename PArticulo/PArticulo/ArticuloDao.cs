@@ -12,7 +12,9 @@ namespace PArticulo
 {
 	public class ArticuloDao
 	{
+
 		private static string SELECT_SQL = "select * from articulo";
+
 		public static IList getList ()
 		{
 
@@ -45,6 +47,15 @@ namespace PArticulo
 			DbCommandHelper.AddParameter(dbCommand, "precio", articulo.Precio);
 			DbCommandHelper.AddParameter(dbCommand, "categoria", articulo.Categoria);
 			dbCommand.ExecuteNonQuery();
+		}
+		private static string DELETE_SQL = "delete from articulo where  id =@id";
+		public static void Delete(TreeView treeView){
+			IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
+			dbCommand.CommandText = DELETE_SQL;
+
+			long id = (long)TreeViewHelper.GetId (treeView);
+			DbCommandHelper.AddParameter (dbCommand, "id", id);
+			dbCommand.ExecuteNonQuery ();
 		}
 	}
 }

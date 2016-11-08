@@ -12,10 +12,12 @@ using PArticulo;
 
 public partial class MainWindow: Gtk.Window
 {	
+	public static Gtk.Action refrescar;
 
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
+		refrescar = refreshAction;
 
 		App.Instance.DbConnection = new MySqlConnection (
 			"Database=dbprueba;User Id=root;Password=SISTEMAS"
@@ -34,6 +36,8 @@ public partial class MainWindow: Gtk.Window
 		newAction.Activated += delegate {
 			new ArticuloView();
 
+
+
 	};
 
 		deleteAction.Activated += delegate {
@@ -44,26 +48,21 @@ public partial class MainWindow: Gtk.Window
 				ButtonsType.YesNo,
 				"¿Desea eliminar el Registro?"
 				);
-			ResponseType response = (ResponseType)messageDialog.Run();
+			ResponseType response = (ResponseType)messageDialog.Run();// Detiene la ejecucion, hasta que el usuario cierre dialogo.
 			messageDialog.Destroy();
 			if (response == ResponseType.No)
 				return;
-			//TODO eliminar
-				};
+			if (response == ResponseType.Yes)
+				ArticuloDao.Delete(treeView);
+				refreshAction.Activate();
+
+			};
 
 		refreshAction.Activated += delegate {
 			fill();
 		
 		};
 	}
-
-
-
-
-
-
-
-
 
 	protected void fill(){
 		editAction.Sensitive = false;

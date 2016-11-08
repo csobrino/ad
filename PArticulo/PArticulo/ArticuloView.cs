@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 
+
 using Org.InstitutoSerpis.Ad;
 
 
@@ -13,18 +14,21 @@ namespace PArticulo
 	{
 		public ArticuloView () : base(Gtk.WindowType.Toplevel)
 		{
+
 			this.Build ();
 			spinButtonPrecio.Value = 0; //stetic bug
 			saveAction.Sensitive = false;	
 
 			saveAction.Activated += delegate {
 				Console.WriteLine ( "save.Action.Activated");
+
 				Articulo articulo = new Articulo();
 				articulo.Nombre= entryNombre.Text;
 				articulo.Precio = Convert.ToDecimal(spinButtonPrecio.Value);
 				articulo.Categoria  = (long?)ComboboxHelper.GetId(comboBoxCategoria);			
 				ArticuloDao.Save(articulo);
-
+				MainWindow.refrescar.Activate();
+	
 			};
 
 			entryNombre.Changed += delegate {
@@ -48,6 +52,9 @@ namespace PArticulo
 	}
 		public long Id { get; set; }
 		public string Nombre { get; set; }
+		public String toString(){
+		return Nombre;
 	}
 }
 
+}
