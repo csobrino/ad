@@ -40,21 +40,11 @@ namespace PArticulo
 
 		}
 	private void fill(){
-			IList list = categoriaDao.GetList ();
+			IList list = CategoriaDao.GetList ();
 			ComboboxHelper.Fill (comboBoxCategoria, list, "Nombre");      
 
 		}
 	}
-	public class Categoria {
-		public Categoria (long id, string nombre){
-			Id = id;
-			Nombre = nombre;
-	}
-		public long Id { get; set; }
-		public string Nombre { get; set; }
-		public String toString(){
-		return Nombre;
-	}
-}
+
 
 }

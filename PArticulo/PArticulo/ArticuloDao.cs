@@ -4,18 +4,24 @@ using System.Data;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Collections;
+using System.Reflection;
 using Org.InstitutoSerpis.Ad;
 using PArticulo;
 
 
 namespace PArticulo
 {
+
+
+
+
+
 	public class ArticuloDao
 	{
 
 		private static string SELECT_SQL = "select * from articulo";
 
-		public static IList getList ()
+		public static IList<Articulo> getList ()
 		{
 
 			List<Articulo>list =  new List<Articulo>();
@@ -56,6 +62,7 @@ namespace PArticulo
 			long id = (long)TreeViewHelper.GetId (treeView);
 			DbCommandHelper.AddParameter (dbCommand, "id", id);
 			dbCommand.ExecuteNonQuery ();
+			//TODO lanzar una excepcion en caso de no eliminar ningun registro.
 		}
 	}
 }

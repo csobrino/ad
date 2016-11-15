@@ -68,10 +68,14 @@ namespace Org.InstitutoSerpis.Ad
 
 		public static object GetId(TreeView treeView){
 			TreeIter treeIter;
-			treeView.Selection.GetSelected (out treeIter);
+			bool selected = treeView.Selection.GetSelected (out treeIter);
+			if (!selected)
+				return null;
 			object item = treeView.Model.GetValue (treeIter, 0);
 			return item == Null.value ? null : 
 				item.GetType ().GetProperty ("Id").GetValue (item, null);
+
+
 	}
 	}
 

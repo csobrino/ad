@@ -41,18 +41,7 @@ public partial class MainWindow: Gtk.Window
 	};
 
 		deleteAction.Activated += delegate {
-			MessageDialog messageDialog = new MessageDialog(
-				this,
-				DialogFlags.Modal,
-				MessageType.Question,
-				ButtonsType.YesNo,
-				"¿Desea eliminar el Registro?"
-				);
-			ResponseType response = (ResponseType)messageDialog.Run();// Detiene la ejecucion, hasta que el usuario cierre dialogo.
-			messageDialog.Destroy();
-			if (response == ResponseType.No)
-				return;
-			if (response == ResponseType.Yes)
+			if (WindowsHelper.Confirm(this, "¿Quieres eliminar el registro?"))
 				ArticuloDao.Delete(treeView);
 				refreshAction.Activate();
 
@@ -64,12 +53,12 @@ public partial class MainWindow: Gtk.Window
 		};
 	}
 
-	protected void fill(){
+	private void fill() {
 		editAction.Sensitive = false;
 		deleteAction.Sensitive = false;
-		IList list = ArticuloDao.getList();
+		//IList list = ArticuloDao.GetList ();
+		IList list = EntityDao.GetList<Articulo> ();
 		TreeViewHelper.Fill (treeView, list);
-	
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
