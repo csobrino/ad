@@ -14,7 +14,8 @@ namespace Org.InstitutoSerpis.Ad
 				message
 				);
 			messageDialog.Title = parent.Title;
-			ResponseType response = (ResponseType)messageDialog.Run();// Detiene la ejecucion, hasta que el usuario cierre dialogo.
+			ResponseType response = (ResponseType)messageDialog.Run();
+			// Detiene la ejecucion, hasta que el usuario cierre dialogo.
 			messageDialog.Destroy();
 			return response == ResponseType.Yes;
 

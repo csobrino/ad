@@ -23,7 +23,11 @@ public partial class MainWindow: Gtk.Window
 			"Database=dbprueba;User Id=root;Password=SISTEMAS"
 			);
 		App.Instance.DbConnection.Open ();
-		fill ();
+
+		IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand ();
+		dbCommand.CommandText =  "update articulo set precio = 0 where precio is null";
+		dbCommand.ExecuteNonQuery();		
+fill ();
 
 	
 		treeView.Selection.Changed += delegate {
@@ -33,13 +37,16 @@ public partial class MainWindow: Gtk.Window
 			Console.WriteLine ("treeView.Selection.Changed selected ={0}", selected);
 		};
 
-		newAction.Activated += delegate {
-			new ArticuloView();
-
-
-
+		newAction.Activated += delegate {			
+			Articulo articulo = new Articulo();
+			articulo.Precio = 0; // hasta que se permitan nulos
+			articulo.Nombre = String.Empty;//Los entry esperan que no sean null.
+			new ArticuloView(articulo);
+		};
+		editAction.Activated += delegate {
+			Articulo articulo = ArticuloDao.Load((long)TreeViewHelper.GetId(treeView));
+			new ArticuloView(articulo);
 	};
-
 		deleteAction.Activated += delegate {
 			if (WindowsHelper.Confirm(this, "¿Quieres eliminar el registro?"))
 				ArticuloDao.Delete(treeView);
