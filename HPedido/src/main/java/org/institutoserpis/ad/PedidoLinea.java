@@ -5,7 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.*;
 
 @Entity (name="PedidoLinea")
 public class PedidoLinea {
@@ -13,10 +14,19 @@ public class PedidoLinea {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	@ManyToOne
+	@JoinColumn (name = "pedido")
 	private Pedido pedido;
+	
+	@ManyToOne
+	@JoinColumn (name = "articulo")
 	private Articulo articulo;
+	
 	private BigDecimal precio;
+	
 	private BigDecimal unidades;
+	
 	private BigDecimal importe;
 	
 	

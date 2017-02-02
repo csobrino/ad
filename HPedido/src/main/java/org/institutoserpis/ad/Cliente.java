@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 
 public class Cliente {
 	@Id
+	@GeneratedValue
 	private long id;
 	private String nombre;
 	
